@@ -3,7 +3,6 @@ import {
   MenuItem,
   Checkbox,
   ListItemText,
-  SelectChangeEvent,
   OutlinedInput,
   InputLabel,
   FormControl,
@@ -18,13 +17,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function SecondPage() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
   const MenuProps = {
     PaperProps: {
       style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        maxHeight: 48 * 4.5 + 8,
         width: 250,
       },
     },
@@ -52,17 +48,19 @@ function SecondPage() {
   };
 
   const sendValue = () => {
-    if (investing.length <= 2 && investing.length >= 1) {
-      console.log(location.state.investValue);
+    if (investing.length == 0) {
+      setFieldError(true);
+      setHelperText('please select the stratergies');
+    } else if (investing.length > 2) {
+      setFieldError(true);
+      setHelperText('maximum of 2 Investment strategies can be selected');
+    } else {
       navigate('/third', {
         state: {
           investValue2: location.state.investValue,
           stratergies: investing,
         },
       });
-    } else {
-      setFieldError(true);
-      setHelperText('maximum of 2 Investment strategies can be selected');
     }
   };
 
@@ -71,12 +69,12 @@ function SecondPage() {
       <Box
         display="flex"
         flexDirection={'column'}
-        marginTop="5%"
+        marginTop="0.5%"
         backgroundColor="#E5E7E8"
         p={10}
         borderRadius={2}
-        width="88%"
-        marginLeft={'0.5%'}
+        width="89%"
+        marginLeft={'0.1%'}
       >
         <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
           Step 2: Select Stratergies
@@ -93,7 +91,7 @@ function SecondPage() {
             renderValue={(selected) => selected.join(', ')}
             MenuProps={MenuProps}
             error={fieldError}
-            helperText={helperText}
+            helpertext={helperText}
           >
             {names.map((name) => (
               <MenuItem key={name} value={name}>
