@@ -6,9 +6,18 @@ import SecondPage from './Components/secondpage';
 import Button from '@mui/material/Button';
 import ThirdPage from './Components/thirdpage';
 import Result from './Components/result';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Modal } from '@mui/material';
+import { useState } from 'react';
+import { MarketOverview } from 'react-ts-tradingview-widgets';
 
 function App() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className="App container-fluid">
       <Box
@@ -19,10 +28,33 @@ function App() {
         }}
         p={3}
       >
+        <Modal open={open} onClose={handleClose}>
+          <Box
+            padding={4}
+            width="90%"
+            height={550}
+            borderRadius={4}
+            sx={{
+              backgroundColor: '#C1DDF6',
+              marginTop: '5%',
+              marginLeft: '3%',
+            }}
+          >
+            <Typography textAlign="center" variant="h5">
+              Market Trend
+            </Typography>
+            <MarketOverview
+              colorTheme="dark"
+              height={500}
+              width="100%"
+              showFloatingTooltip
+            ></MarketOverview>
+          </Box>
+        </Modal>
         <Typography variant="h4" sx={{ margin: 'auto' }}>
           Stock Recommendation Engine
         </Typography>
-        <Button>Show Trends</Button>
+        <Button onClick={handleOpen}>Show Trends</Button>
       </Box>
 
       <BrowserRouter>

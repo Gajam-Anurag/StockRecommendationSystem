@@ -59,6 +59,7 @@ function FirstPage() {
         <Typography sx={{ textAlign: 'left' }}>
           Amount should be greater than $5000
         </Typography>
+
         <Button
           sx={{ marginTop: '2%', width: '10%', marginLeft: '90%' }}
           variant="outlined"
