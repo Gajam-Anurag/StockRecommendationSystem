@@ -1,4 +1,12 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Modal,
+  Typography,
+} from '@mui/material';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
@@ -6,6 +14,12 @@ import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
 function Result() {
   const location = useLocation();
   const [responseData, setResponseData] = useState([]);
+
+  const getWeekly = async (symbol) => {
+    let response = await axios.get(
+      `https://cloud.iexapis.com/v1/stock/${symbol}/chart/1m?token=pk_31638584dd6c4c04a550a33b66e50c33`
+    );
+  };
 
   const COLORS = [
     '#FF8042',
@@ -59,30 +73,35 @@ function Result() {
                           item1.change < 0 ? '#FE2929' : '#69C74B',
                       }}
                     >
-                      <CardContent>
-                        <Box
-                          display="flex"
-                          justifyContent="space-between"
-                          marginBottom={1}
-                        >
-                          <Typography variant="h5">
-                            {item1.companyName}
+                      <CardActionArea onClick={() => getWeekly(item1.symbol)}>
+                        <CardContent>
+                          <Box
+                            display="flex"
+                            justifyContent="space-between"
+                            marginBottom={1}
+                          >
+                            <Typography variant="h5">
+                              {item1.companyName}
+                            </Typography>
+                            <Typography>{item1.symbol}</Typography>
+                          </Box>
+                          <Typography textAlign="left">
+                            Latest Price: {item1.latestPrice}
                           </Typography>
-                          <Typography>{item1.symbol}</Typography>
-                        </Box>
-                        <Typography textAlign="left">
-                          Latest Price: {item1.latestPrice}
-                        </Typography>
-                        <Typography textAlign="left">
-                          Change: {item1.change}
-                        </Typography>
-                        <Typography textAlign="left">
-                          Change Percent: {item1.changePercent}
-                        </Typography>
-                        <Typography textAlign="right" sx={{ fontSize: '12px' }}>
-                          {item1.latestTime}
-                        </Typography>
-                      </CardContent>
+                          <Typography textAlign="left">
+                            Change: {item1.change}
+                          </Typography>
+                          <Typography textAlign="left">
+                            Change Percent: {item1.changePercent}
+                          </Typography>
+                          <Typography
+                            textAlign="right"
+                            sx={{ fontSize: '12px' }}
+                          >
+                            {item1.latestTime}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
                     </Card>
                   ))}
                 </Box>

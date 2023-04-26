@@ -39,7 +39,6 @@ function FirstPage() {
         borderRadius={2}
         width="89%"
         marginLeft={'0.1%'}
-        height="100%"
         sx={{ overflowY: 'scroll' }}
       >
         <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>

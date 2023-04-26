@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Firstpage from './Components/firstpage';
 import SecondPage from './Components/secondpage';
 import Button from '@mui/material/Button';
@@ -8,10 +7,12 @@ import ThirdPage from './Components/thirdpage';
 import Result from './Components/result';
 import { Box, Typography, Modal } from '@mui/material';
 import { useState } from 'react';
-import { MarketOverview } from 'react-ts-tradingview-widgets';
+import ShowTrends from './Components/Trends';
+import Home from './home.png';
 
 function App() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const handleOpen = () => {
     setOpen(true);
   };
@@ -32,7 +33,7 @@ function App() {
           <Box
             padding={4}
             width="90%"
-            height={550}
+            height={600}
             borderRadius={4}
             sx={{
               backgroundColor: '#C1DDF6',
@@ -40,31 +41,45 @@ function App() {
               marginLeft: '3%',
             }}
           >
-            <Typography textAlign="center" variant="h5">
-              Market Trend
-            </Typography>
-            <MarketOverview
-              colorTheme="dark"
-              height={500}
-              width="100%"
-              showFloatingTooltip
-            ></MarketOverview>
+            <Box display="flex" p={2}>
+              <Typography
+                variant="h5"
+                marginLeft="44%"
+                height="10%"
+                width="40%"
+              >
+                Market Trend
+              </Typography>
+              <Button
+                sx={{ marginLeft: '10%', height: '1' }}
+                variant="contained"
+                onClick={handleClose}
+              >
+                Close
+              </Button>
+            </Box>
+            <ShowTrends />
           </Box>
         </Modal>
+        <img
+          src={Home}
+          width="45"
+          height="45"
+          onClick={() => navigate('/')}
+          style={{ cursor: 'pointer' }}
+        />
         <Typography variant="h4" sx={{ margin: 'auto' }}>
           Stock Recommendation Engine
         </Typography>
         <Button onClick={handleOpen}>Show Trends</Button>
       </Box>
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Firstpage />} />
-          <Route path="/second" element={<SecondPage />} />
-          <Route path="/third" element={<ThirdPage />} />
-          <Route path="/result" element={<Result />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Firstpage />} />
+        <Route path="/second" element={<SecondPage />} />
+        <Route path="/third" element={<ThirdPage />} />
+        <Route path="/result" element={<Result />} />
+      </Routes>
     </div>
   );
 }
