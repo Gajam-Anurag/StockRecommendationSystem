@@ -41,31 +41,36 @@ function FirstPage() {
         marginLeft={'0.1%'}
         sx={{ overflowY: 'scroll' }}
       >
-        <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
-          Step 1: Investintment Amount
-        </Typography>
-        <TextField
-          type="number"
-          label="in dollars($)"
-          inputRef={valueRef}
-          error={fieldError}
-          helperText={helperText}
-          defaultValue={defValue}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-        />
-        <Typography sx={{ textAlign: 'left' }}>
-          Amount should be greater than $5000
-        </Typography>
+        <Box backgroundColor="white" p={4} borderRadius={4}>
+          <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
+            Step 1: Investintment Amount
+          </Typography>
+          <TextField
+            sx={{ marginRight: '85%' }}
+            type="number"
+            label="in dollars($)"
+            inputRef={valueRef}
+            error={fieldError}
+            helperText={helperText}
+            defaultValue={defValue}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+          />
+          <Typography sx={{ textAlign: 'left' }}>
+            Amount should be greater than $5000
+          </Typography>
 
-        <Button
-          sx={{ marginTop: '2%', width: '10%', marginLeft: '90%' }}
-          variant="outlined"
-          onClick={sendValue}
-        >
-          Next
-        </Button>
+          <Button
+            sx={{ marginTop: '2%', width: '10%', marginLeft: '90%' }}
+            variant="outlined"
+            onClick={sendValue}
+          >
+            Next
+          </Button>
+        </Box>
       </Box>
     </>
   );

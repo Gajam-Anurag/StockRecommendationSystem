@@ -76,54 +76,56 @@ function SecondPage() {
         width="89%"
         marginLeft={'0.1%'}
       >
-        <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
-          Step 2: Select Stratergies
-        </Typography>
-        <FormControl sx={{ width: 500 }}>
-          <InputLabel id="demo-multiple-checkbox-label">
-            Investing Stratergies
-          </InputLabel>
-          <Select
-            multiple
-            value={investing}
-            onChange={handleChange}
-            input={<OutlinedInput label="Investing Stratergies" />}
-            renderValue={(selected) => selected.join(', ')}
-            MenuProps={MenuProps}
-            error={fieldError}
-            helpertext={helperText}
-          >
-            {names.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={investing.indexOf(name) > -1} />
-                <ListItemText primary={name} />
-              </MenuItem>
-            ))}
-          </Select>
-          {fieldError ? (
-            <FormHelperText error>{helperText}</FormHelperText>
-          ) : null}
-        </FormControl>
-        <Typography sx={{ textAlign: 'left' }}>
-          Pick one or two Investment strategies
-        </Typography>
-        <Box display="flex" marginTop={'5%'}>
-          <Button
-            sx={{ width: '10%' }}
-            variant="outlined"
-            onClick={() => {
-              navigate('/');
-            }}
-          >
-            Back
-          </Button>
-          <Button
-            sx={{ width: '10%', marginLeft: '80%' }}
-            variant="outlined"
-            onClick={() => sendValue()}
-          >
-            Next
-          </Button>
+        <Box backgroundColor="white" p={4} borderRadius={4}>
+          <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
+            Step 2: Select Stratergies
+          </Typography>
+          <FormControl sx={{ width: 500, marginRight: '85%' }}>
+            <InputLabel id="demo-multiple-checkbox-label">
+              Investing Stratergies
+            </InputLabel>
+            <Select
+              multiple
+              value={investing}
+              onChange={handleChange}
+              input={<OutlinedInput label="Investing Stratergies" />}
+              renderValue={(selected) => selected.join(', ')}
+              MenuProps={MenuProps}
+              error={fieldError}
+              helpertext={helperText}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={investing.indexOf(name) > -1} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+            {fieldError ? (
+              <FormHelperText error>{helperText}</FormHelperText>
+            ) : null}
+          </FormControl>
+          <Typography sx={{ textAlign: 'left' }}>
+            Pick one or two Investment strategies
+          </Typography>
+          <Box display="flex" marginTop={'5%'}>
+            <Button
+              sx={{ width: '10%' }}
+              variant="outlined"
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              Back
+            </Button>
+            <Button
+              sx={{ width: '10%', marginLeft: '80%' }}
+              variant="outlined"
+              onClick={() => sendValue()}
+            >
+              Next
+            </Button>
+          </Box>
         </Box>
       </Box>
     </>

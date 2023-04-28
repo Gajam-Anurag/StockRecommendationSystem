@@ -31,34 +31,29 @@ function App() {
       >
         <Modal open={open} onClose={handleClose}>
           <Box
+            border={1}
             padding={4}
             width="90%"
             height={600}
             borderRadius={4}
             sx={{
-              backgroundColor: '#C1DDF6',
+              backgroundColor: 'white',
               marginTop: '5%',
               marginLeft: '3%',
             }}
           >
-            <Box display="flex" p={2}>
-              <Typography
-                variant="h5"
-                marginLeft="44%"
-                height="10%"
-                width="40%"
-              >
-                Market Trend
-              </Typography>
-              <Button
-                sx={{ marginLeft: '10%', height: '1' }}
-                variant="contained"
-                onClick={handleClose}
-              >
-                Close
-              </Button>
-            </Box>
+            <Typography variant="h5" marginLeft="44%" height="10%" width="40%">
+              Market Trend
+            </Typography>
+
             <ShowTrends />
+            <Button
+              sx={{ marginLeft: '94.5%', marginTop: '1%' }}
+              variant="contained"
+              onClick={handleClose}
+            >
+              Ok
+            </Button>
           </Box>
         </Modal>
         <img

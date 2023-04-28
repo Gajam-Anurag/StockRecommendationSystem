@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -9,16 +10,33 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
+import {
+  PieChart,
+  Pie,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Label,
+} from 'recharts';
 
 function Result() {
   const location = useLocation();
   const [responseData, setResponseData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+  const [lineData, setLineData] = useState();
+  const [companyName, setCompanyName] = useState();
 
-  const getWeekly = async (symbol) => {
+  const getWeekly = async (symbol, company) => {
     let response = await axios.get(
       `https://cloud.iexapis.com/v1/stock/${symbol}/chart/1m?token=pk_31638584dd6c4c04a550a33b66e50c33`
     );
+    setOpen(true);
+    setLineData(response.data);
+    setCompanyName(company + ' (' + symbol + ')');
   };
 
   const COLORS = [
@@ -40,6 +58,60 @@ function Result() {
   return (
     <>
       <Box>
+        <Modal open={open} onClose={handleClose}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            border={1}
+            borderRadius={2}
+            marginTop={12}
+            width="70%"
+            marginLeft={22}
+            backgroundColor="white"
+            p={4}
+          >
+            <Typography marginBottom={2}>{companyName}</Typography>
+            <LineChart
+              width={1000}
+              height={400}
+              data={lineData}
+              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="label">
+                <Label value="Date" offset={0} position="insideBottom" />
+              </XAxis>
+              <YAxis
+                label={{ value: '$', angle: -90, position: 'insideLeft' }}
+              />
+              <Tooltip />
+              <Line
+                connectNulls={true}
+                type="monotone"
+                dataKey="close"
+                stroke="#82ca9d"
+                fill="#82ca9d"
+              />
+              <Line
+                connectNulls={true}
+                type="monotone"
+                dataKey="open"
+                stroke="rgb(11, 21, 26)"
+                fill="#8884d8"
+              />
+            </LineChart>
+            <Button
+              sx={{
+                width: '5%',
+                marginLeft: '90%',
+                backgroundColor: '#C0FDB5',
+              }}
+              onClick={handleClose}
+            >
+              Ok
+            </Button>
+          </Box>
+        </Modal>
         <Box>
           {responseData &&
             responseData.strategiesResponse &&
@@ -68,12 +140,15 @@ function Result() {
                     <Card
                       sx={{
                         width: '30%',
-
                         backgroundColor:
                           item1.change < 0 ? '#FE2929' : '#69C74B',
                       }}
                     >
-                      <CardActionArea onClick={() => getWeekly(item1.symbol)}>
+                      <CardActionArea
+                        onClick={() =>
+                          getWeekly(item1.symbol, item1.companyName)
+                        }
+                      >
                         <CardContent>
                           <Box
                             display="flex"
