@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: url('../public/stock1.jpg');
+  background-size: 100% 100%;
 }
 
 .App-logo {

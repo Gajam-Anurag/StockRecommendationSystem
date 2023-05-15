@@ -34,14 +34,13 @@ function FirstPage() {
         display="flex"
         flexDirection={'column'}
         marginTop="0.5%"
-        backgroundColor="#E5E7E8"
         p={10}
-        borderRadius={2}
         width="89%"
+        height="510px"
         marginLeft={'0.1%'}
         sx={{ overflowY: 'scroll' }}
       >
-        <Box backgroundColor="white" p={4} borderRadius={4}>
+        <Box backgroundColor="white" color="black" p={4} borderRadius={4}>
           <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
             Step 1: Investintment Amount
           </Typography>

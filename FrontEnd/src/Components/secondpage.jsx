@@ -70,9 +70,8 @@ function SecondPage() {
         display="flex"
         flexDirection={'column'}
         marginTop="0.5%"
-        backgroundColor="#E5E7E8"
         p={10}
-        borderRadius={2}
+        height="510px"
         width="89%"
         marginLeft={'0.1%'}
       >

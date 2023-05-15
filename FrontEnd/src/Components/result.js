@@ -57,18 +57,18 @@ function Result() {
 
   return (
     <>
-      <Box>
+      <Box style={{ marginTop: '-1.7%' }}>
         <Modal open={open} onClose={handleClose}>
           <Box
             display="flex"
             flexDirection="column"
             border={1}
             borderRadius={2}
-            marginTop={12}
             width="70%"
             marginLeft={22}
             backgroundColor="white"
             p={4}
+            marginTop="6.2%"
           >
             <Typography marginBottom={2}>{companyName}</Typography>
             <LineChart
@@ -101,10 +101,10 @@ function Result() {
               />
             </LineChart>
             <Button
+              variant="outlined"
               sx={{
                 width: '5%',
-                marginLeft: '90%',
-                backgroundColor: '#C0FDB5',
+                marginLeft: '91%',
               }}
               onClick={handleClose}
             >
@@ -123,18 +123,16 @@ function Result() {
                   fontSize={20}
                   marginBottom={0.5}
                   fontWeight="bold"
+                  marginTop="1%"
+                  color="white"
                 >
                   {location.state.stratergies[index]}
                 </Typography>
                 <Box
                   display="flex"
-                  width="94%"
-                  height="100%"
-                  marginLeft="2%"
                   marginBottom={2}
-                  borderRadius={2}
                   justifyContent="space-evenly"
-                  sx={{ backgroundColor: '#E5E7E8', p: 2 }}
+                  sx={{ p: 2 }}
                 >
                   {item.map((item1, index1) => (
                     <Card
@@ -189,19 +187,11 @@ function Result() {
           fontSize={20}
           marginBottom={0.5}
           fontWeight="bold"
+          color="white"
         >
           Pie Chart
         </Typography>
-        <Box
-          display="flex"
-          width="94%"
-          height="100%"
-          marginLeft="2%"
-          marginBottom={2}
-          borderRadius={2}
-          justifyContent="space-evenly"
-          sx={{ backgroundColor: '#E5E7E8', p: 2 }}
-        >
+        <Box display="flex" justifyContent="space-evenly" sx={{ p: 2 }}>
           {responseData && responseData.piechartResponse ? (
             <PieChart width={700} height={400}>
               <Tooltip formatter={(value, name) => [value, name]} />

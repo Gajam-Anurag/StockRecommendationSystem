@@ -56,11 +56,10 @@ function ThirdPage() {
         display="flex"
         flexDirection={'column'}
         marginTop="0.5%"
-        backgroundColor="#E5E7E8"
         p={10}
-        borderRadius={2}
         width="89%"
         marginLeft={'0.1%'}
+        height="510px"
       >
         <Box
           display={'flex'}

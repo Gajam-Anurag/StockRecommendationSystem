@@ -25,7 +25,7 @@ function App() {
         display="flex"
         flexDirection="row"
         sx={{
-          background: 'linear-gradient(to bottom, #D3E7F8, #BEC2C2)',
+          background: 'linear-gradient(to bottom, #5D82A2, #8EA6BD, #B6D9E6)',
         }}
         p={3}
       >
@@ -49,7 +49,7 @@ function App() {
             <ShowTrends />
             <Button
               sx={{ marginLeft: '94.5%', marginTop: '1%' }}
-              variant="contained"
+              variant="outlined"
               onClick={handleClose}
             >
               Ok
@@ -66,7 +66,9 @@ function App() {
         <Typography variant="h4" sx={{ margin: 'auto' }}>
           Stock Recommendation Engine
         </Typography>
-        <Button onClick={handleOpen}>Show Trends</Button>
+        <Button onClick={handleOpen} style={{ color: 'black' }}>
+          Show Trends
+        </Button>
       </Box>
 
       <Routes>
@@ -75,6 +77,14 @@ function App() {
         <Route path="/third" element={<ThirdPage />} />
         <Route path="/result" element={<Result />} />
       </Routes>
+      <Box
+        padding="10px"
+        style={{
+          background: 'linear-gradient(to bottom, #5D82A2, #8EA6BD, #B6D9E6)',
+        }}
+      >
+        By Team 10
+      </Box>
     </div>
   );
 }
