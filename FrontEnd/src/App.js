@@ -77,14 +77,6 @@ function App() {
         <Route path="/third" element={<ThirdPage />} />
         <Route path="/result" element={<Result />} />
       </Routes>
-      <Box
-        padding="10px"
-        style={{
-          background: 'linear-gradient(to bottom, #5D82A2, #8EA6BD, #B6D9E6)',
-        }}
-      >
-        By Team 10
-      </Box>
     </div>
   );
 }
