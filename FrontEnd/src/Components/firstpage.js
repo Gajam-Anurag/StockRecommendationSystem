@@ -42,7 +42,7 @@ function FirstPage() {
       >
         <Box backgroundColor="white" color="black" p={4} borderRadius={4}>
           <Typography sx={{ textAlign: 'left', marginBottom: '3%' }}>
-            Step 1: Investintment Amount
+            Step 1: Investment Amount
           </Typography>
           <TextField
             sx={{ marginRight: '85%' }}
